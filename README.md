@@ -1,18 +1,32 @@
 # Magento 2 Rebuild URL Rewrites
 
-[![Build Status](https://travis-ci.org/staempfli/magento2-module-rebuild-url-rewrite.svg?branch=develop)](https://travis-ci.org/staempfli/magento2-module-rebuild-url-rewrite)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/b52dfcea9619437d8ae46e311b038c9a)](https://www.codacy.com/app/Staempfli/magento2-module-rebuild-url-rewrite?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=staempfli/magento2-module-rebuild-url-rewrite&amp;utm_campaign=Badge_Grade)
-[![Maintainability](https://api.codeclimate.com/v1/badges/9171761a16613b73ba35/maintainability)](https://codeclimate.com/github/staempfli/magento2-module-rebuild-url-rewrite/maintainability)
-[![Test Coverage](https://api.codeclimate.com/v1/badges/9171761a16613b73ba35/test_coverage)](https://codeclimate.com/github/staempfli/magento2-module-rebuild-url-rewrite/test_coverage)
-
 The module adds a CLI which allows to rebuild the following URL Rewrites: `categories`, `products` and `cms-pages`.  
- 
+  
+It's a fork from [Stämpfli repository](https://github.com/staempfli/magento2-module-rebuild-url-rewrite) with some improvements to:
+  
+* **Multiple root category ID for Magento 2 Multistore.**   
+  
+  Now when you rebuild categories' urls for specified store with a custom category root ID the correct urls are generated.  
+  
+* **Use SEO configurations fro Admin Panel for products.**  
+  
+  Now the configuration option `Use Categories Path for Product URLs` is included during rebuilding products' urls.  
+  
+  When set to `No` the produtct urls with subcategories in its `path` will not be stored in the `url_rewrite` table.  
+  
+  It's for the performance purpose. It prevent from generating unused urls and the table has less entries for quicker SQL queries.  
+  
+  Configuration option path: 
+  ```
+  Admin Panel > Stores > Settings > Configuration > Catalog > Catalog > Search Engine Optimization > Use Categories Path for Product URLs
+  ```
+
 ## Installation  
   
 Install the module with composer:  
   
 ```sh  
-composer require staempfli/magento2-module-rebuild-url-rewrite  
+composer require asprada/magento2-module-rebuild-url-rewrite  
 ```  
 
 ## Usage
@@ -47,7 +61,7 @@ Rebuild only specific categories
 bin/magento urlrewrite:rebuild categories -c=25,26,27  
 ```
 
- or products
+or products
 
 ```php  
 bin/magento urlrewrite:rebuild products -p=1,2,3  
@@ -74,7 +88,7 @@ bin/magento urlrewrite:rebuild --help
   
 Support  
 -------  
-If you have any issues with this extension, open an issue on [GitHub](https://github.com/staempfli/magento2-module-rebuild-url-rewrite/issues).  
+If you have any issues with this extension, open an issue on [GitHub](https://github.com/asprada/magento2-module-rebuild-url-rewrite/issues).  
   
 Contribution  
 ------------  
@@ -82,12 +96,9 @@ Any contribution is highly appreciated. The best way to contribute code is to op
   
 Developer  
 ---------  
-[Marcel Hauri](https://github.com/mhauri), and all other [contributors](https://github.com/staempfli/magento2-module-rebuild-url-rewrite/contributors)  
+[Marcel Hauri](https://github.com/mhauri), [Adam Sprada](https://github.com/asprada)  
   
 License  
 -------  
 [Open Software License ("OSL") v. 3.0](https://opensource.org/licenses/OSL-3.0)  
   
-Copyright  
----------  
-(c) 2018, Stämpfli AG

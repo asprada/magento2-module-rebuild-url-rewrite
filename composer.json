@@ -1,5 +1,5 @@
 {
-  "name": "staempfli/magento2-module-rebuild-url-rewrite",
+  "name": "asprada/magento2-module-rebuild-url-rewrite",
   "description": "Magento 2 rebuild url rewrites for categories and products",
   "require": {
     "php": "^7.0|^7.1",
@@ -17,6 +17,7 @@
     { "type": "composer", "url": "https://repo.magento.com/" }
   ],
   "type": "magento2-module",
+  "version": "1.2.0",
   "license": [
     "OSL-3.0",
     "AFL-3.0"
@@ -25,6 +26,10 @@
     {
       "name": "Marcel Hauri",
       "email": "marcel.hauri@staempfli.com"
+    },
+    {
+      "name": "Adam Sprada",
+      "email": "adam.sprada@gmail.com"
     }
   ],
   "autoload": {
