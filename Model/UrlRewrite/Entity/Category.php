@@ -83,14 +83,14 @@ class Category implements UrlRewriteEntityInterface
         );
 
         if ($arguments) {
-            $this->categoryCollection->addFieldToFilter('entity_id', ['in' => $arguments]);
+            $categoryCollection->addFieldToFilter('entity_id', ['in' => $arguments]);
         }
 
         $this->urlRewrite
             ->setStoreId($storeId)
             ->setEntity(CategoryUrlRewriteGenerator::ENTITY_TYPE)
             ->setRewriteGenerator($this->categoryUrlRewriteGenerator)
-            ->setCollection($this->categoryCollection)
+            ->setCollection($categoryCollection)
             ->rebuild();
     }
 }

@@ -5,7 +5,7 @@
  * @author Adam Sprada <adam.sprada@gmail.com>
  */
 
-namespace Staempfli\Plugin\Magento\CatalogUrlRewrite\Model\Product;
+namespace Staempfli\RebuildUrlRewrite\Plugin\Magento\CatalogUrlRewrite\Model\Product;
 
 use Magento\Catalog\Helper\Product as ProductHelper;
 use Magento\Catalog\Model\Product;
