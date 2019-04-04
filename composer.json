@@ -17,7 +17,7 @@
     { "type": "composer", "url": "https://repo.magento.com/" }
   ],
   "type": "magento2-module",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "license": [
     "OSL-3.0",
     "AFL-3.0"
