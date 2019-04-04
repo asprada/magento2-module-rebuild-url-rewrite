@@ -9,18 +9,18 @@ namespace Staempfli\RebuildUrlRewrite\Plugin\Magento\CatalogUrlRewrite\Model\Pro
 
 use Magento\Catalog\Model\Product;
 use Magento\CatalogUrlRewrite\Model\ObjectRegistry;
-use Magento\CatalogUrlRewrite\Model\Product\CategoriesUrlRewriteGenerator as ParentCategoriesUrlRewriteGenerator;
+use Magento\CatalogUrlRewrite\Model\Product\AnchorUrlRewriteGenerator as ParentAnchorUrlRewriteGenerator;
 use Magento\UrlRewrite\Service\V1\Data\UrlRewrite;
 
 /**
- * Class CategoriesUrlRewriteGeneratorPlugin
+ * Class AnchorUrlRewriteGeneratorPlugin
  */
-class CategoriesUrlRewriteGeneratorPlugin extends UrlRewriteGeneratorAbstract
+class AnchorUrlRewriteGeneratorPlugin extends UrlRewriteGeneratorAbstract
 {
     /**
      * When "Use Categories Path for Product URLs" is set to "No" then skip generating rewrites for unused paths.
      *
-     * @param ParentCategoriesUrlRewriteGenerator $subject
+     * @param ParentAnchorUrlRewriteGenerator $subject
      * @param \Closure $proceed
      * @param $storeId
      * @param Product $product
@@ -30,7 +30,7 @@ class CategoriesUrlRewriteGeneratorPlugin extends UrlRewriteGeneratorAbstract
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function aroundGenerate(
-        ParentCategoriesUrlRewriteGenerator $subject,
+        ParentAnchorUrlRewriteGenerator $subject,
         \Closure $proceed,
         $storeId,
         Product $product,

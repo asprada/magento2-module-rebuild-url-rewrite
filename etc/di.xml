@@ -13,7 +13,15 @@
         </arguments>
     </type>
     <type name="Magento\CatalogUrlRewrite\Model\Product\CategoriesUrlRewriteGenerator">
-        <plugin name="checkUseCategoryForProductBeforeGeneratingUrls"
+        <plugin name="checkUseCategoryForProductBeforeGeneratingCategoriesUrls"
                 type="Staempfli\RebuildUrlRewrite\Plugin\Magento\CatalogUrlRewrite\Model\Product\CategoriesUrlRewriteGeneratorPlugin" />
+    </type>
+    <type name="Magento\CatalogUrlRewrite\Model\Product\AnchorUrlRewriteGenerator">
+        <plugin name="checkUseCategoryForProductBeforeGeneratingAnchorUrls"
+                type="Staempfli\RebuildUrlRewrite\Plugin\Magento\CatalogUrlRewrite\Model\Product\AnchorUrlRewriteGeneratorPlugin" />
+    </type>
+    <type name="Magento\CatalogUrlRewrite\Model\Product\CurrentUrlRewritesRegenerator">
+        <plugin name="checkUseCategoryForProductBeforeGeneratingCurrentUrls"
+                type="Staempfli\RebuildUrlRewrite\Plugin\Magento\CatalogUrlRewrite\Model\Product\CurrentUrlRewritesRegeneratorPlugin" />
     </type>
 </config>
