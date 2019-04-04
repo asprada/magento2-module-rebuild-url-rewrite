@@ -16,4 +16,8 @@
         <plugin name="checkUseCategoryForProductBeforeGeneratingUrls"
                 type="Staempfli\RebuildUrlRewrite\Plugin\Magento\CatalogUrlRewrite\Model\Product\CategoriesUrlRewriteGeneratorPlugin" />
     </type>
+    <type name="Magento\CatalogUrlRewrite\Model\Product\AnchorUrlRewriteGenerator">
+        <plugin name="checkUseCategoryForProductBeforeGeneratingUrls"
+                type="Staempfli\RebuildUrlRewrite\Plugin\Magento\CatalogUrlRewrite\Model\Product\AnchorUrlRewriteGeneratorPlugin" />
+    </type>
 </config>
