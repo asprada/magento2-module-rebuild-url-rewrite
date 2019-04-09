@@ -71,15 +71,16 @@ class Category implements UrlRewriteEntityInterface
     public function rebuild(int $storeId, array $arguments = [])
     {
         $store = $this->storeManager->getStore($storeId);
-        $parent = $store->getRootCategoryId();
+        $rootCategoryId = $store->getRootCategoryId();
 
-        $categoryCollection = $this->categoryResource->getCategories($parent, $recursionLevel = 0, false, true);
+        $categoryCollection = $this->categoryResource->getCategories($rootCategoryId, 0, false, true);
         $categoryCollection->setStoreId($storeId);
         $categoryCollection->addAttributeToSelect(
             [
                 'url_path',
                 'url_key',
-            ]
+            ],
+            true
         );
 
         if ($arguments) {
