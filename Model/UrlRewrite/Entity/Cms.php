@@ -39,7 +39,7 @@ class Cms implements UrlRewriteEntityInterface
 
     public function rebuild(int $storeId, array $arguments = [])
     {
-        $this->cmsCollection->addStoreFilter($storeId);
+        $this->cmsCollection->addStoreFilter($storeId, false);
         $this->cmsCollection->addFieldToSelect(['identifier']);
 
         $this->urlRewrite
