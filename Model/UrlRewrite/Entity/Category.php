@@ -9,7 +9,7 @@ declare(strict_types = 1);
 
 namespace Staempfli\RebuildUrlRewrite\Model\UrlRewrite\Entity;
 
-use Magento\Catalog\Model\ResourceModel\Category as CategoryResource;
+use Magento\Catalog\Model\ResourceModel\Category\TreeFactory;
 use Magento\CatalogUrlRewrite\Model\CategoryUrlRewriteGenerator;
 use Magento\Store\Model\StoreManagerInterface;
 use Staempfli\RebuildUrlRewrite\Model\UrlRewrite\UrlRewriteEntityInterface;
@@ -31,37 +31,40 @@ class Category implements UrlRewriteEntityInterface
     private $categoryUrlRewriteGenerator;
 
     /**
-     * @var CategoryResource
-     */
-    private $categoryResource;
-
-    /**
      * @var StoreManagerInterface
      */
     private $storeManager;
+
+    /**
+     * Category tree factory
+     *
+     * @var TreeFactory
+     */
+    private $categoryTreeFactory;
 
     /**
      * Category constructor.
      *
      * @param UrlRewriteInterface $urlRewrite
      * @param CategoryUrlRewriteGenerator $categoryUrlRewriteGenerator
-     * @param CategoryResource $categoryResource
      * @param StoreManagerInterface $storeManager
+     * @param TreeFactory $categoryTreeFactory
      */
     public function __construct(
         UrlRewriteInterface $urlRewrite,
         CategoryUrlRewriteGenerator $categoryUrlRewriteGenerator,
-        CategoryResource $categoryResource,
-        StoreManagerInterface $storeManager
+        StoreManagerInterface $storeManager,
+        TreeFactory $categoryTreeFactory
     ) {
         $this->urlRewrite = $urlRewrite;
         $this->categoryUrlRewriteGenerator = $categoryUrlRewriteGenerator;
-        $this->categoryResource = $categoryResource;
         $this->storeManager = $storeManager;
+        $this->categoryTreeFactory = $categoryTreeFactory;
     }
 
     /**
      * Rebuild categories' urls.
+     * Hidden and disabled categories are included.
      *
      * @param int $storeId
      * @param array $arguments
@@ -73,7 +76,7 @@ class Category implements UrlRewriteEntityInterface
         $store = $this->storeManager->getStore($storeId);
         $rootCategoryId = $store->getRootCategoryId();
 
-        $categoryCollection = $this->categoryResource->getCategories($rootCategoryId, 0, false, true);
+        $categoryCollection = $this->getCategories($rootCategoryId);
         $categoryCollection->setStoreId($storeId);
         $categoryCollection->addAttributeToSelect(
             [
@@ -93,5 +96,22 @@ class Category implements UrlRewriteEntityInterface
             ->setRewriteGenerator($this->categoryUrlRewriteGenerator)
             ->setCollection($categoryCollection)
             ->rebuild();
+    }
+
+    /**
+     * Retrieve categories.
+     *
+     * @param integer $parent
+     *
+     * @return \Magento\Catalog\Model\ResourceModel\Category\Collection
+     */
+    protected function getCategories($parent)
+    {
+        /** @var \Magento\Catalog\Model\ResourceModel\Category\Tree $tree */
+        $tree = $this->categoryTreeFactory->create();
+        $tree->loadNode($parent)->loadChildren(0)->getChildren();
+        $tree->addCollectionData(null, false, $parent, true, false);
+
+        return $tree->getCollection();
     }
 }
