@@ -18,7 +18,7 @@ use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
-final class RebuildCommand extends Command
+class RebuildCommand extends Command
 {
     const INPUT_STORES = 'stores';
     const INPUT_PRODUCTS = 'products';
